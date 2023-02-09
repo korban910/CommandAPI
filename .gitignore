@@ -1,3 +1,5 @@
 .idea/
-CommandAPI/Dependencies
-CommandAPI.Tests/Dependencies
+CommandAPI/bin
+CommandAPI/obj
+CommandAPI.Tests/bin
+CommandAPI.Tests/obj
