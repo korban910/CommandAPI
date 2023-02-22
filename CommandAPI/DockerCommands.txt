@@ -6,4 +6,7 @@ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:54
 -d: detached 
 postgres : image from the Docker Hub
 
-docker ps
+• docker start <container Id or Name>: start an existing container.
+• docker ps: List running containers.
+• docker ps - -all: List all containers that have run.
+• docker stop <container Id or Name>: stop a running container.
