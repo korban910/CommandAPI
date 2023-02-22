@@ -1,0 +1,9 @@
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+
+--name: name of the container
+-e: Environment variables
+-p: [internal] -> [external] port number
+-d: detached 
+postgres : image from the Docker Hub
+
+docker ps
