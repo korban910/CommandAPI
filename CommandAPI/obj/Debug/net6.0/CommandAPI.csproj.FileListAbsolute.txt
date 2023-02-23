@@ -43,3 +43,10 @@
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/System.Text.Encodings.Web.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/System.Text.Json.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.Configuration.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Json.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.Configuration.UserSecrets.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Physical.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll
