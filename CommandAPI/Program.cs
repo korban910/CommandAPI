@@ -1,10 +1,15 @@
 using CommandAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<CommandContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSqlConnection"));
+});
 builder.Services.AddControllers();
-builder.Services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo>();
+builder.Services.AddScoped<ICommandAPIRepo, SqlCommandAPIRepo>();
 
 var app = builder.Build();
 
