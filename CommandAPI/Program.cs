@@ -5,16 +5,19 @@ using Npgsql;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectBuilder = new NpgsqlConnectionStringBuilder();
-connectBuilder.ConnectionString = builder.Configuration.GetConnectionString("PostgresSqlConnection");
-connectBuilder.Username = builder.Configuration["UserID"];
-connectBuilder.Password = builder.Configuration["Password"];
+var connectBuilder = new NpgsqlConnectionStringBuilder
+{
+    ConnectionString = builder.Configuration.GetConnectionString("PostgresSqlConnection"),
+    Username = builder.Configuration["UserID"],
+    Password = builder.Configuration["Password"]
+};
 builder.Services.AddDbContext<CommandContext>(opt =>
 {
     opt.UseNpgsql(connectBuilder.ConnectionString);
     // opt.UseSql(builder.Configuration.GetConnectionString("MySqlConnection"));
 });
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICommandAPIRepo, SqlCommandAPIRepo>();
 
 var app = builder.Build();

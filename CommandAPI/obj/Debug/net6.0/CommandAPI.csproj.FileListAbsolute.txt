@@ -50,3 +50,5 @@
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Physical.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/AutoMapper.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

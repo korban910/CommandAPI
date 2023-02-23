@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "HfkgAch9ZRdjmkW9Uh9P0UlBBUJo0VMU298PmwIT2zyLz2jUTF7YBG/RcHrqDCK3wCkGXsSTZTrJiZw/rkb75A==",
+  "dgSpecHash": "/wyojPvGkw7VM16LKz88/J88C4bw4LqFXFM0jAbLTCNW206GWMvXIdkn46/2aqSQ9IHuRkesxXTsx4BgJgDrcg==",
   "success": true,
   "projectFilePath": "/home/coco/Repository/CommandAPISolution/CommandAPI.Tests/CommandAPI.Tests.csproj",
   "expectedPackageFiles": [
+    "/home/coco/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
+    "/home/coco/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "/home/coco/.nuget/packages/coverlet.collector/3.1.0/coverlet.collector.3.1.0.nupkg.sha512",
     "/home/coco/.nuget/packages/microsoft.codecoverage/16.11.0/microsoft.codecoverage.16.11.0.nupkg.sha512",
-    "/home/coco/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",
+    "/home/coco/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/coco/.nuget/packages/microsoft.entityframeworkcore/7.0.3/microsoft.entityframeworkcore.7.0.3.nupkg.sha512",
     "/home/coco/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.3/microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",
     "/home/coco/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.3/microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512",
