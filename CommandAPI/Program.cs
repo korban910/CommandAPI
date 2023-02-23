@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CommandContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSqlConnection"));
+    // opt.UseSql(builder.Configuration.GetConnectionString("MySqlConnection"));
 });
 builder.Services.AddControllers();
 builder.Services.AddScoped<ICommandAPIRepo, SqlCommandAPIRepo>();
