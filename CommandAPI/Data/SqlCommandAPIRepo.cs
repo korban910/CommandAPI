@@ -36,7 +36,7 @@ public class SqlCommandAPIRepo : ICommandAPIRepo
 
     public void UpdateCommand(Command cmd)
     {
-        throw new NotImplementedException();
+       // we dont need to do anything here
     }
 
     public void DeleteCommand(Command cmd)
