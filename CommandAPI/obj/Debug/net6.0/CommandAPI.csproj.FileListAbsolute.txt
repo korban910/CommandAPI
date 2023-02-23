@@ -52,3 +52,7 @@
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/AutoMapper.dll
 /home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/coco/Repository/CommandAPISolution/CommandAPI/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll
