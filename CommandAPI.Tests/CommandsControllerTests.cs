@@ -6,6 +6,7 @@ using CommandAPI.Data;
 using CommandAPI.Dtos;
 using CommandAPI.Models;
 using CommandAPI.Profiles;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -211,6 +212,53 @@ public class CommandsControllerTests : IDisposable
         
         // Act
         var result = controller.UpdateCommand(0, new CommandCreateUpdateDto());
+        
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
+    }
+
+    [Fact]
+    public void PartialCommandUpdate_Return404NotFound_WhenNonExistentObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(0)).Returns(() => null);
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.PartialCommandUpdate(0, new JsonPatchDocument<CommandCreateUpdateDto>());
+        
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
+    }
+
+    [Fact]
+    public void DeleteCommand_Return204NoContent_WhenValidObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(1)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.DeleteCommand(1);
+        
+        // Arrange
+        Assert.IsType<NoContentResult>(result);
+    }
+
+    [Fact]
+    public void DeleteCommand_Return404NotFound_WhenNonExistentObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(0)).Returns(() => null);
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.DeleteCommand(0);
         
         // Assert
         Assert.IsType<NotFoundResult>(result);
