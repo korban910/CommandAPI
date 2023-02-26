@@ -1,34 +1,148 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
 using CommandAPI.Controllers;
 using CommandAPI.Data;
+using CommandAPI.Dtos;
 using CommandAPI.Models;
 using CommandAPI.Profiles;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
 namespace CommandAPI.Tests;
 
-public class CommandsControllerTests
+public class CommandsControllerTests : IDisposable
 {
-    [Fact]
-    public void GetAllCommands_ReturnsZeroItems_WhenDBIsEmpty()
+    private Mock<ICommandAPIRepo>? mockRepo;
+    private CommandsProfile? realProfile;
+    private MapperConfiguration? configuration;
+    private IMapper? mapper;
+    
+    public CommandsControllerTests()
     {
-        // Arrange
-        // We need to create an instance of our CommandsController class
-        //var controller = new CommandsController( /* repository, AutoMapper */);
+        mockRepo = new Mock<ICommandAPIRepo>();
+        realProfile = new CommandsProfile();
+        configuration = new MapperConfiguration(cfg => cfg.AddProfile(realProfile));
+        mapper = new Mapper(configuration);
+    }
+
+    public void Dispose()
+    {
+        mockRepo = null;
+        realProfile = null;
+        configuration = null;
+        realProfile = null;
     }
 
     [Fact]
     public void GetAllCommands_Returns200OK_WhenDBIsEmpty()
     {
         // Arrange
-        var mockRepo = new Mock<ICommandAPIRepo>();
-        mockRepo.Setup(repo => repo.GetAllCommands()).Returns(GetCommands(0));
-        var realProfile = new CommandsProfile();
-        var configuration = new MapperConfiguration(cfg => cfg.AddProfile(realProfile));
-        var mapper = new Mapper(configuration);
-        var controller = new CommandsController(mockRepo.Object, mapper);
+        mockRepo!.Setup(repo => repo.GetAllCommands()).Returns(GetCommands(0));
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetAllCommands();
+        
+        // Assert
+        Assert.IsType<OkObjectResult>(result.Result);
+    }
+
+    [Fact]
+    public void GetAllCommands_ReturnsOneResource_WhenDBHasOneResource()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetAllCommands()).Returns(GetCommands(1));
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetAllCommands();
+        
+        // Assert
+        var okResult = result.Result as OkObjectResult;
+        var commands = okResult!.Value as List<CommandReadDto>;
+        Assert.Single(commands!);
+    }
+
+    [Fact]
+    public void GetAllCommands_Returns200Ok_WhenDBHasOneResource()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetAllCommands()).Returns(GetCommands(1));
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetAllCommands();
+        
+        // Assert
+        Assert.IsType<OkObjectResult>(result.Result);
+    }
+
+    [Fact]
+    public void GetAllCommands_ReturnCorrectObject_WhenDBHasOneResource()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetAllCommands()).Returns(GetCommands(1));
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetAllCommands();
+        
+        // Assert
+        Assert.IsType<ActionResult<IEnumerable<CommandReadDto>>>(result);
+    }
+
+    [Fact]
+    public void GetCommandByID_Return404NotFound_WhenNonExistentIDProdivided()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(0)).Returns(() => null);
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetCommandById(0);
+        
+        // Assert
+        Assert.IsType<NotFoundResult>(result.Result);
+    }
+
+    [Fact]
+    public void GetCommandsByID_Return200OK_WhenValidIDProvided()
+    {
+        //Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(1)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetCommandById(1);
+        
+        // Assert
+        Assert.IsType<OkObjectResult>(result.Result);
+    }
+
+    [Fact]
+    public void GetCommandsByID_ReturnCorrectObject_WhenValidIDProvided()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(2)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.GetCommandById(2);
+        
+        // Arrange
+        Assert.IsType<ActionResult<CommandReadDto>>(result);
     }
 
     private List<Command> GetCommands(int num)
