@@ -141,8 +141,79 @@ public class CommandsControllerTests : IDisposable
         // Act
         var result = controller.GetCommandById(2);
         
-        // Arrange
+        // Assert
         Assert.IsType<ActionResult<CommandReadDto>>(result);
+    }
+
+    [Fact]
+    public void CreateCommand_ReturnCorrectObject_WhenValidObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(1)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.CreateCommand(new CommandCreateUpdateDto());
+        
+        // Assert
+        Assert.IsType<ActionResult<CommandReadDto>>(result);
+    }
+
+    [Fact]
+    public void CreateCommand_Return201Created_WhenValidObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(1)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.CreateCommand(new CommandCreateUpdateDto());
+        
+        // Assert
+        Assert.IsType<CreatedAtRouteResult>(result.Result);
+    }
+
+    [Fact]
+    public void UpdateCommand_Return204NoContent_WHenValidObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(1)).Returns(new Command
+        {
+            HowTo = "mock",
+            Platform = "Mock",
+            CommandLine = "Mock"
+        });
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.UpdateCommand(1, new CommandCreateUpdateDto());
+        
+        // Assert
+        Assert.IsType<NoContentResult>(result);
+    }
+
+    [Fact]
+    public void UpdateCommand_Return404NotFound_WhenNonExistentObjectSubmitted()
+    {
+        // Arrange
+        mockRepo!.Setup(repo => repo.GetCommandById(0)).Returns(() => null);
+        var controller = new CommandsController(mockRepo.Object, mapper!);
+        
+        // Act
+        var result = controller.UpdateCommand(0, new CommandCreateUpdateDto());
+        
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
     }
 
     private List<Command> GetCommands(int num)
