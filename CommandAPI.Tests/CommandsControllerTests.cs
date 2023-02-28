@@ -261,7 +261,7 @@ public class CommandsControllerTests : IDisposable
         var result = controller.DeleteCommand(0);
         
         // Assert
-        Assert.IsType<NotFoundResult>(result);
+        Assert.IsType<OkResult>(result);  //NotFoundResult -> for breaking test cases
     }
 
     private List<Command> GetCommands(int num)
