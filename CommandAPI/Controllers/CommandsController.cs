@@ -11,6 +11,8 @@ namespace CommandAPI.Controllers;
 [ApiController]
 public class CommandsController : ControllerBase
 {
+    // This should re-trigger the build in Azure DevOps
+
     // Add the following code to our class
     private readonly ICommandAPIRepo _repository;
     private readonly IMapper _mapper;
